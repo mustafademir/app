@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,16 +20,6 @@ public class Book {
     @JoinColumn(name="category_id")
     @JsonIgnore
     private Category category;
-
-    /*@ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            })
-    @JoinTable(name = "book_stores",
-            joinColumns = { @JoinColumn(name = "book_id") },
-            inverseJoinColumns = { @JoinColumn(name = "bookstore_id") })
-    private List<Bookstore> bookstores;*/
 
     @ManyToMany(mappedBy = "books",fetch = FetchType.LAZY)
     private Set<Bookstore> bookstores = new HashSet<>();
@@ -77,12 +66,4 @@ public class Book {
     public void setBookstores(Set<Bookstore> bookstores) {
         this.bookstores = bookstores;
     }
-
-    /*public List<Bookstore> getBookstores() {
-        return bookstores;
-    }
-
-    public void setBookstores(List<Bookstore> bookstores) {
-        this.bookstores = bookstores;
-    }*/
 }

@@ -9,5 +9,5 @@ public interface IBookService {
 
     Book createBook(Book book);
 
-    Book changeCategory(Long cId, Long bookId);
+    Integer changeCategory(Long cId, Long bookId);
 }

@@ -14,6 +14,9 @@ public class BookstoreServiceImpl implements IBookstoreService {
     @Autowired
     private BookstoreDaoJpa bookstoreDaoJpa;
 
+    @Autowired
+    private BookDaoJpa bookDaoJpa;
+
     public List<Bookstore> findAll() {
         return bookstoreDaoJpa.findAll();
     }
@@ -24,5 +27,19 @@ public class BookstoreServiceImpl implements IBookstoreService {
 
     public List<Book> getBookList(Long bookstoreId) {
         return bookstoreDaoJpa.findById(bookstoreId).get().getBooks();
+    }
+
+    public Bookstore addBook(Long bookId, Long bookstoreId) {
+        Book book = bookDaoJpa.findById(bookId).get();
+        Bookstore bookstore = bookstoreDaoJpa.findById(bookstoreId).get();
+        bookstore.getBooks().add(book);
+        return bookstoreDaoJpa.save(bookstore);
+    }
+
+    public Bookstore removeBook(Long bookId, Long bookstoreId) {
+        Book book = bookDaoJpa.findById(bookId).get();
+        Bookstore bookstore = bookstoreDaoJpa.findById(bookstoreId).get();
+        bookstore.getBooks().remove(book);
+        return bookstoreDaoJpa.save(bookstore);
     }
 }

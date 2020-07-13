@@ -3,11 +3,10 @@ package com.bookstore.app.services;
 import com.bookstore.app.dao.BookDaoJpa;
 import com.bookstore.app.dao.CategoryDaoJpa;
 import com.bookstore.app.domain.Book;
-import com.bookstore.app.domain.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -26,10 +25,8 @@ public class BookServiceImpl implements IBookService {
         return bookDaoJpa.saveAndFlush(book);
     }
 
-    public Book changeCategory(Long cId, Long bookId) {
-        Category category = categoryDaoJpa.findById(cId).get();
-        Book book = bookDaoJpa.findById(bookId).get();
-        book.setCategory(category);
-        return book;
+    @Transactional
+    public Integer changeCategory(Long cId, Long bookId) {
+        return bookDaoJpa.updateCategoryId(cId,bookId);
     }
 }

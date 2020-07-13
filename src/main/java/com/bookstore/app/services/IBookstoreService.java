@@ -11,4 +11,8 @@ public interface IBookstoreService {
     Bookstore createBookstore(Bookstore bookstore);
 
     List<Book> getBookList(Long bookstoreId);
+
+    Bookstore addBook(Long bookId, Long bookstoreId);
+
+    Bookstore removeBook(Long bookId, Long bookstoreId);
 }

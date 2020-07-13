@@ -8,15 +8,15 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/book")
-@Api(value="Book Management System", description="Operations pertaining to user in Book Management System")
+@Api(value="Book Management System", description="Book")
 public class BookApi {
     @Autowired
     private IBookService bookService;
@@ -39,10 +39,10 @@ public class BookApi {
         return bookMapper.toBookDto(bookService.createBook(bookMapper.toBook(bookDto)));
     }
 
-    @PutMapping(produces = "application/json")
-    public BookDto changeCategory(@RequestParam Long cId, @RequestParam Long bookId) {
-        return bookMapper.toBookDto(bookService.changeCategory(cId, bookId));
+    @GetMapping("changeCategory")
+    public ResponseEntity changeCategory(@RequestParam Long cId, @RequestParam Long bookId) {
+        bookService.changeCategory(cId, bookId);
+        return ResponseEntity.ok().body(HttpStatus.OK);
     }
-
 
 }

@@ -3,7 +3,6 @@ package com.bookstore.app.mappers;
 import com.bookstore.app.domain.Bookstore;
 import com.bookstore.app.dtos.BookstoreDto;
 import org.mapstruct.Mapper;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 

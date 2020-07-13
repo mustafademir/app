@@ -1,6 +1,5 @@
 package com.bookstore.app.dao;
 
-import com.bookstore.app.domain.Book;
 import com.bookstore.app.domain.Bookstore;
 import org.springframework.data.jpa.repository.JpaRepository;
 

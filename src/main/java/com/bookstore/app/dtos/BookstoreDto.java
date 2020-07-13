@@ -1,9 +1,6 @@
 package com.bookstore.app.dtos;
 
-import com.bookstore.app.domain.Book;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.List;
 
 public class BookstoreDto {
     @JsonProperty("id")
@@ -14,8 +11,6 @@ public class BookstoreDto {
 
     @JsonProperty("city")
     private String city;
-
-//    private List<BookDto> books;
 
     public Long getId() {
         return id;
@@ -41,11 +36,4 @@ public class BookstoreDto {
         this.city = city;
     }
 
-   /* public List<BookDto> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<BookDto> books) {
-        this.books = books;
-    }*/
 }

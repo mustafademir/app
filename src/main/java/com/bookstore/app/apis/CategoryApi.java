@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/category")
-@Api(value="Category Management System", description="Operations pertaining to user in Category Management System")
+@Api(value="Category Management System", description="Category")
 public class CategoryApi {
     @Autowired
     private ICategoryService categoryService;
@@ -27,7 +27,7 @@ public class CategoryApi {
     @Autowired
     BookMapper bookMapper;
 
-    @ApiOperation(value = "View a list of all Category", response = List.class)
+    @ApiOperation(value = "View a list of all Categories", response = List.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),

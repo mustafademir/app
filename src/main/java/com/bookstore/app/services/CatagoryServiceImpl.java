@@ -1,17 +1,20 @@
 package com.bookstore.app.services;
 
+import com.bookstore.app.dao.BookDaoJpa;
 import com.bookstore.app.dao.CategoryDaoJpa;
 import com.bookstore.app.domain.Book;
 import com.bookstore.app.domain.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class CatagoryServiceImpl implements ICategoryService {
     @Autowired
     private CategoryDaoJpa categoryDaoJpa;
+
+    @Autowired
+    private BookDaoJpa bookDaoJpa;
 
     public List<Category> findAll() {
         return categoryDaoJpa.findAll();
@@ -22,6 +25,6 @@ public class CatagoryServiceImpl implements ICategoryService {
     }
 
     public List<Book> listBooks(Long cId) {
-        return categoryDaoJpa.findById(cId).get().getBooks();
+       return bookDaoJpa.findBooksByCategoryId(cId);
     }
 }
